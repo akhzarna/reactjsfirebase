@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import fire from './Fire'
+
+import {fire,facebookProvider} from './Fire'
 
 class App extends React.Component {
 
@@ -50,7 +51,7 @@ class App extends React.Component {
       // alert(this.state.login);
       fire.auth().onAuthStateChanged((user)=>{
         if (user) {
-          alert(user.uid);
+          alert(user.email);
         }else{
           alert('User is not Signed In');
         }
@@ -59,7 +60,37 @@ class App extends React.Component {
 
   submitLogOut=()=>{
       // alert(this.state.login);
-      fire.auth().signOut();
+      fire.auth().signOut().then((user)=>{
+        if (user) {
+          alert('Logout User is = ',user);
+        }else{
+          alert('Error in LogOut');
+        }
+      });
+
+  }
+
+  submitSignInWithFacebook=()=>{
+    fire.auth().signInWithPopup(facebookProvider).then((result,error)=>{
+      if (error) {
+        alert('Error',error);
+      }else{
+        alert(result);
+      }
+    });
+  }
+
+  submitCheckSignInMethod=()=>{
+
+    fire.auth().fetchProvidersForEmail('akhzarn@yahoo.com').then((providers)=>{
+      if (providers.length === 0) {
+        alert('Zero');
+      }else if (providers.indexOf("password")===-1) {
+        alert('Minus 1');
+      }else{
+        alert('Else');
+      }
+    })
   }
 
   render(){
@@ -94,6 +125,21 @@ class App extends React.Component {
       <button onClick={this.submitLogOut}>
       Signed Out
       </button>
+      <br />
+      <br />
+
+      <button onClick={this.submitSignInWithFacebook}>
+      Sign In With Facebook
+      </button>
+      <br />
+      <br />
+
+
+      <button onClick={this.submitCheckSignInMethod}>
+      Check Sign In Method
+      </button>
+      <br />
+      <br />
 
       </div>
     );

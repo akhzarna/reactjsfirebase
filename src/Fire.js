@@ -1,16 +1,18 @@
 import * as firebase from 'firebase';
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDFaOCoCQqmcu0RC4hf04AZ1RjHSpJpXfI",
-  authDomain: "newtest-a5ac9.firebaseapp.com",
-  databaseURL: "https://newtest-a5ac9.firebaseio.com",
-  projectId: "newtest-a5ac9",
-  storageBucket: "newtest-a5ac9.appspot.com",
-  messagingSenderId: "831439537626",
-  appId: "1:831439537626:web:6b4db232f78d825c92ace3",
-  measurementId: "G-J2CF4J9FT5"
+  apiKey: "AIzaSyDBjRFNgXDLNKNe0Qe9BFrTlJPSQGrsbRI",
+     authDomain: "onlinelectures-467b3.firebaseapp.com",
+     databaseURL: "https://onlinelectures-467b3.firebaseio.com",
+     projectId: "onlinelectures-467b3",
+     storageBucket: "onlinelectures-467b3.appspot.com",
+     messagingSenderId: "834472329929",
+     appId: "1:834472329929:web:4009b965eb89268cf68318",
+     measurementId: "G-Z01VV69364"
  };
+
  // Initialize Firebase
  const fire = firebase.initializeApp(firebaseConfig);
+ const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
- export default fire;
+ export {fire,facebookProvider};
